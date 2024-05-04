@@ -1,3 +1,20 @@
+/*
+Joural Program
+By Ryan Worsham
+
+Exceeding Requirements:
+
+I made 2 additional improvements to my program that showed creativity and exceeded requirements.
+
+    1.	I improved the process for both loading from and saving to a file by automatically appending the 
+        filetype “.txt” to the end of the filename so that the user does not need to include the filetype 
+        when asked to enter the name of the file.
+
+    2.	When a new entry is added to the journal, I included the day of the week that the entry was created 
+        on as part of the information saved to the journal.
+
+
+*/
 using System;
 
 class Program
@@ -20,7 +37,7 @@ class Program
         while (userChoice != 5)
         {
             ShowMenu();
-            
+
             userChoice = int.Parse(Console.ReadLine());
 
             if (userChoice == 1) // Write a new entry
@@ -35,13 +52,13 @@ class Program
             {
                 Console.WriteLine("What is the filename?");
                 string fileName = Console.ReadLine();
-                journal.LoadFromFile(fileName);
+                journal.LoadFromFile($"{fileName}.txt");
             }
             else if (userChoice == 4) // Save the journal to a file
             {
                 Console.WriteLine("What is the filename?");
                 string fileName = Console.ReadLine();
-                journal.SaveToFile(fileName);
+                journal.SaveToFile($"{fileName}.txt");
             }
             else if (userChoice == 5) // Quit the promgram
             {
@@ -53,7 +70,7 @@ class Program
             }
         }
     }
-    public static void ShowMenu() 
+    public static void ShowMenu()
     {
         Console.WriteLine();
         Console.WriteLine("Please select one of the following choices:");
@@ -75,7 +92,7 @@ class Program
         ];
         promptGenerator._prompts = prompts;
     }
-    public static void WriteNewEntry(Journal journal, PromptGenerator promptGenerator) 
+    public static void WriteNewEntry(Journal journal, PromptGenerator promptGenerator)
     {
         // Get a random prompt
         string randomPrompt = promptGenerator.GetRandomPrompt();
@@ -86,12 +103,14 @@ class Program
         // Get the users entry
         string usersEntry = Console.ReadLine();
 
-        // Get the date for the entry
+        // Get the date and day of week for the entry
         DateTime currentDateTime = DateTime.Now;
-        
+        DayOfWeek currentDayofWeek = currentDateTime.DayOfWeek;
+
         // Create new entry
         Entry entry = new Entry();
         entry._date = currentDateTime.ToShortDateString();
+        entry._dayOfWeek = currentDayofWeek.ToString();
         entry._promptText = randomPrompt;
         entry._entryText = usersEntry;
 

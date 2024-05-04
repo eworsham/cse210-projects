@@ -21,7 +21,7 @@ public class Journal
         {
             foreach (Entry entry in _entries)
             {
-                outputFile.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
+                outputFile.WriteLine($"{entry._date}|{entry._dayOfWeek}|{entry._promptText}|{entry._entryText}");
             }
         }
     }
@@ -43,8 +43,9 @@ public class Journal
             // Create new entry to store the parts
             Entry entry = new Entry();
             entry._date = parts[0];
-            entry._promptText = parts[1];
-            entry._entryText = parts[2];
+            entry._dayOfWeek = parts[1];
+            entry._promptText = parts[2];
+            entry._entryText = parts[3];
 
             // Add entry to journal
             _entries.Add(entry);
