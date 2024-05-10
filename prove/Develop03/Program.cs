@@ -1,3 +1,18 @@
+/*
+Scripture Memorizer Program
+By Ryan Worsham
+
+Exceeding Requirements:
+
+I made 2 additional improvements to my program that showed creativity and exceeded requirements.
+
+    1.	I improved the process of picking random words to hide so that the program will pick from
+        words that have not already been hidden instead of hiding a word that was previously hidden
+
+    2.	
+
+
+*/
 using System;
 
 class Program
@@ -16,7 +31,7 @@ class Program
         Scripture scripture = new Scripture(reference, text);
 
         string userInput = "";
-        while (userInput != "quit" && !scripture.IsCompletelyHidden())
+        while (userInput != "quit")
         {
             // Write scripture to console
             Console.Clear();
@@ -26,6 +41,14 @@ class Program
             Console.WriteLine();
             Console.WriteLine("Please enter to continue or type 'quit' to finish:");
             userInput = Console.ReadLine();
+
+            if (scripture.IsCompletelyHidden())
+            {
+                break;
+            }
+
+            // Hide random words
+            scripture.HideRandomWords(3);
         }
     }
 }

@@ -26,6 +26,17 @@ public class Word
 
     public string GetDisplayText()
     {
-        return _text;
+        string displayText = _text;
+
+        // If hidden, display underscores instead of the word
+        if (_isHidden)
+        {
+            for (int i = 0; i < displayText.Length; i++)
+            {
+                displayText = displayText.Replace(displayText[i], '_');
+            }
+        }
+
+        return displayText;
     }
 }

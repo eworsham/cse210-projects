@@ -2,6 +2,8 @@ public class Scripture
 {
     private Reference _reference;
     private List<Word> _words = new List<Word>();
+    private int _numTotalWordsHidden;
+    private bool _isHidden;
 
     public Scripture(Reference reference, string fullText)
     {
@@ -9,16 +11,38 @@ public class Scripture
 
         // Split fullText into an array of strings and store in Word objects
         string[] arrayText = fullText.Split(" ");
-        foreach(string text in arrayText)
+        foreach (string text in arrayText)
         {
             Word word = new Word(text);
             _words.Add(word);
         }
+
+        _numTotalWordsHidden = 0;
     }
 
     public void HideRandomWords(int numberToHide)
     {
-        
+        // Loop to hide words
+        int numHidden = 0;
+        while (numHidden < numberToHide) {
+
+            // Get index for random word
+            Random randomGenerator = new Random();
+            int wordIndex = randomGenerator.Next(_words.Count);
+
+            // Hide word at index only if not already hidden, increment _numWordsHidden by 1
+            if (!_words[wordIndex].IsHidden())
+            {
+                _words[wordIndex].Hide();
+                numHidden++;
+                _numTotalWordsHidden++;
+            }
+
+            // Check total of words hidden vs length of text
+            if (_numTotalWordsHidden == _words.Count) {
+                _isHidden = true;
+            }
+        }
     }
 
     public string GetDisplayText()
@@ -27,7 +51,7 @@ public class Scripture
         string text = _reference.GetDisplayText();
         
         // Interate list of words and display each word
-        foreach(Word word in _words)
+        foreach (Word word in _words)
         {
             text += $" {word.GetDisplayText()}";
         }
@@ -37,6 +61,6 @@ public class Scripture
 
     public bool IsCompletelyHidden()
     {
-        return false;
+        return _isHidden;
     }
 }
