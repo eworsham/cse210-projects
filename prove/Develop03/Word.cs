@@ -2,6 +2,7 @@ public class Word
 {
     private string _text;
     private bool _isHidden;
+    private bool _isPartialHidden;
 
     public Word(string text) 
     {
@@ -24,6 +25,11 @@ public class Word
         return _isHidden;
     }
 
+    public void PartialHide()
+    {
+        _isPartialHidden = true;
+    }
+
     public string GetDisplayText()
     {
         string displayText = _text;
@@ -32,6 +38,13 @@ public class Word
         if (_isHidden)
         {
             for (int i = 0; i < displayText.Length; i++)
+            {
+                displayText = displayText.Replace(displayText[i], '_');
+            }
+        }
+        else if (_isPartialHidden) // Display first letter of the word, using underscores for the rest
+        {
+            for (int i = 1; i < displayText.Length; i++)
             {
                 displayText = displayText.Replace(displayText[i], '_');
             }

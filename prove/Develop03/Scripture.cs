@@ -45,12 +45,20 @@ public class Scripture
         }
     }
 
+    public void HidePartial()
+    {
+        // Loop to partially hide words
+        foreach (Word word in _words) {
+            word.PartialHide();
+        }
+    }
+
     public string GetDisplayText()
     {
         // Display reference info
         string text = _reference.GetDisplayText();
         
-        // Interate list of words and display each word
+        // Iterate list of words and display each word
         foreach (Word word in _words)
         {
             text += $" {word.GetDisplayText()}";
