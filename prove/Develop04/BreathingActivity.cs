@@ -11,8 +11,11 @@ public class BreathingActivity : Activity
         // Show starting message
         DisplayStartingMessage();
 
-        // Each breathe takes 10 seconds
-        for (int i = 0; i < _duration; i += 10) 
+        // Loop until duration is reached
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(_duration);
+
+        while (DateTime.Now < endTime)
         {
             Console.Write("Breathe in... ");
             ShowCountDown(4);
@@ -20,6 +23,7 @@ public class BreathingActivity : Activity
             ShowCountDown(6);
             Console.WriteLine();
         }
+
 
         // Show ending message
         DisplayEndingMessage();

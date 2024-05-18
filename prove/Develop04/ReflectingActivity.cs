@@ -33,7 +33,11 @@ public class ReflectingActivity : Activity
         // Show starting message
         DisplayStartingMessage();
 
+        // Show random prompt
+        DisplayPrompt();
 
+        // Show random questions until duration is reached
+        DisplayQuestions();
 
         // Show ending message
         DisplayEndingMessage();
@@ -41,21 +45,45 @@ public class ReflectingActivity : Activity
 
     public string GetRandomPrompt()
     {
-        return "";
+        Random random = new Random();
+        int randomIndex = random.Next(_prompts.Count);
+
+        return _prompts[randomIndex];
     }
 
     public string GetRandomQuestion()
     {
-        return "";
+        Random random = new Random();
+        int randomIndex = random.Next(_questions.Count);
+
+        return _questions[randomIndex];
     }
 
     public void DisplayPrompt()
     {
-
+        Console.WriteLine("Consider the following prompt:");
+        Console.WriteLine();
+        Console.WriteLine($" --- {GetRandomPrompt()} ---");
+        Console.WriteLine();
+        Console.WriteLine("When you have something in mind, press enter to continue.");
+        Console.ReadLine();
+        Console.WriteLine("Now ponder on each of the following questions as they relate to this experience.");
+        Console.Write("You may begin in:  ");
+        ShowCountDown(5);
+        Console.Clear();
     }
 
     public void DisplayQuestions()
     {
+        // Loop until duration is reached
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(_duration);
 
+        while (DateTime.Now < endTime)
+        {
+            Console.Write($"> {GetRandomQuestion()}  ");
+            ShowSpinner(10);
+        }
+        Console.WriteLine();
     }
 }
