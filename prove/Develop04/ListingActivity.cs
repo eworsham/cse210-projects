@@ -15,6 +15,8 @@ public class ListingActivity : Activity
             "When have you felt the Holy Ghost this month?",
             "Who are some of your personal heroes?"
         ];
+
+        _totalDuration = 0;
     }
 
     public void Run()
@@ -25,14 +27,17 @@ public class ListingActivity : Activity
         // Display random prompt
         Console.WriteLine("List as many responses as you can to the following prompt:");
         Console.WriteLine($" --- {GetRandomPrompt()} ---");
-        Console.Write("You may being in  ");
-        ShowCountDown(10);
+        Console.Write("You may begin in  ");
+        ShowCountDown(9);
 
         // Get list from user and display number of items from the list
         List<string> userList = GetListFromUser();
         _count = userList.Count;
         Console.WriteLine($"You listed {_count} items!");
         Console.WriteLine();
+
+        // Increment total duration
+        _totalDuration += _duration;
 
         // Show ending message
         DisplayEndingMessage();

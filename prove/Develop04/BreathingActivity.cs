@@ -4,6 +4,7 @@ public class BreathingActivity : Activity
     {
         _name = "Breathing Activity";
         _description = "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.";
+        _totalDuration = 0;
     }
 
     public void Run()
@@ -24,6 +25,8 @@ public class BreathingActivity : Activity
             Console.WriteLine();
         }
 
+        // Increment total duration
+        _totalDuration += _duration;
 
         // Show ending message
         DisplayEndingMessage();

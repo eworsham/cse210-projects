@@ -3,12 +3,14 @@ public class Activity
     protected string _name;
     protected string _description;
     protected int _duration;
+    protected int _totalDuration;
 
     public Activity()
     {
         _name = "Base Activity";
         _description = "This is the base activity";
         _duration = 30;
+        _totalDuration = 30;
     }
 
     public void DisplayStartingMessage()
@@ -31,6 +33,8 @@ public class Activity
         Console.WriteLine("Well done!");
         ShowSpinner(5);
         Console.WriteLine($"You have completed another {_duration} seconds of the {_name}.");
+        ShowSpinner(5);
+        Console.WriteLine($"The total amount of time you have completed in the {_name} is {_totalDuration} seconds.");
         ShowSpinner(5);
     }
 

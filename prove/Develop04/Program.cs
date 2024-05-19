@@ -1,3 +1,15 @@
+/*
+Mindfulness Program
+By Ryan Worsham
+
+Exceeding Requirements:
+
+I made 1 additional improvement to my program that showed creativity and exceeded requirements.
+
+    1.	I add a new feature that keeps track of the total time spend in each activity and displays
+        that number at the end of each activity.
+
+*/
 using System;
 
 class Program

@@ -26,6 +26,8 @@ public class ReflectingActivity : Activity
             "What did you learn about yourself through this experience?",
             "How can you keep this experience in mind in the future?"
         ];
+
+        _totalDuration = 0;
     }
 
     public void Run()
@@ -38,6 +40,9 @@ public class ReflectingActivity : Activity
 
         // Show random questions until duration is reached
         DisplayQuestions();
+
+        // Increment total duration
+        _totalDuration += _duration;
 
         // Show ending message
         DisplayEndingMessage();
