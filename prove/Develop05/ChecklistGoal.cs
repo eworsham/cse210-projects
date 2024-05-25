@@ -11,19 +11,41 @@ public class ChecklistGoal : Goal
         _bonus = bonus;
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
-        
+        _amountCompleted += 1;
+        if (IsComplete())
+        {
+            return _points + _bonus;
+        }
+        else 
+        {
+            return _points;
+        }
     }
 
     public override bool IsComplete()
     {
-        return false;
+        if (_amountCompleted >= _target)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
 
     public override string GetDetailsString()
     {
-        return "";
+        if (IsComplete())
+        {
+            return $"[X] {_shortName} ({_description}) -- Currently completed: {_amountCompleted}/{_target}";
+        }
+        else 
+        {
+            return $"[ ] {_shortName} ({_description}) -- Currently completed: {_amountCompleted}/{_target}";
+        }
     }
 
     public override string GetStringRepresentation()
