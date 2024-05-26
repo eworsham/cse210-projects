@@ -68,6 +68,7 @@ public class GoalManager
 
     public void ListGoalDetails()
     {
+        Console.WriteLine("The goals are:");
         int i = 1;
         foreach (Goal goal in _goals)
         {
@@ -118,7 +119,7 @@ public class GoalManager
             int goalPoints = int.Parse(Console.ReadLine());
             Console.Write("How many times does this goal need to be accomplished for a bonus? ");
             int goalTarget = int.Parse(Console.ReadLine());
-            Console.WriteLine("What is the bonus for accomplishing it that many times? ");
+            Console.Write("What is the bonus for accomplishing it that many times? ");
             int goalBonus = int.Parse(Console.ReadLine());
 
             ChecklistGoal checklistGoal = new ChecklistGoal(goalName, goalDescription, goalPoints, goalTarget, goalBonus);
@@ -142,11 +143,83 @@ public class GoalManager
 
     public void SaveGoals()
     {
+        Console.Write("What is the filename for the goal file? ");
+        string fileName = Console.ReadLine();
 
+        using (StreamWriter outputFile = new StreamWriter(fileName))
+        {
+            outputFile.WriteLine($"{_score}");
+            foreach (Goal goal in _goals)
+            {
+                outputFile.WriteLine(goal.GetStringRepresentation());
+            }
+        }
+        Console.WriteLine();
     }
 
     public void LoadGoals()
     {
+        Console.Write("What is the filename for the goal file? ");
+        string fileName = Console.ReadLine();
 
+
+
+        string[] lines = File.ReadAllLines(fileName);
+
+        _score = int.Parse(lines[0]);
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string[] goalParts = lines[i].Split(":");
+            string goalType = goalParts[0];
+            string goalInfo = goalParts[1];
+
+
+            if (goalType == "SimpleGoal")
+            {
+                string[] goalInfoParts = goalInfo.Split(",");
+                string goalName = goalInfoParts[0];
+                string goalDescription = goalInfoParts[1];
+                int goalPoints = int.Parse(goalInfoParts[2]);
+                string goalComplete = goalInfoParts[3];
+
+                SimpleGoal simpleGoal = new SimpleGoal(goalName, goalDescription, goalPoints);
+
+                if (goalComplete == "True") 
+                {
+                    simpleGoal.SetIsComplete(true);
+                }
+
+                _goals.Add(simpleGoal);
+            }
+            else if (goalType == "EternalGoal")
+            {
+                string[] goalInfoParts = goalInfo.Split(",");
+                string goalName = goalInfoParts[0];
+                string goalDescription = goalInfoParts[1];
+                int goalPoints = int.Parse(goalInfoParts[2]);
+
+                EternalGoal eternalGoal = new EternalGoal(goalName, goalDescription, goalPoints);
+
+                _goals.Add(eternalGoal);
+            }
+            else if (goalType == "ChecklistGoal")
+            {
+                string[] goalInfoParts = goalInfo.Split(",");
+                string goalName = goalInfoParts[0];
+                string goalDescription = goalInfoParts[1];
+                int goalPoints = int.Parse(goalInfoParts[2]);
+                int bonusPoints = int.Parse(goalInfoParts[3]);
+                int goalTarget = int.Parse(goalInfoParts[4]);
+                int goalAmountComplete = int.Parse(goalInfoParts[5]);
+
+                ChecklistGoal checklistGoal = new ChecklistGoal(goalName, goalDescription, goalPoints, goalTarget, bonusPoints);
+
+                checklistGoal.SetAmountCompleted(goalAmountComplete);
+
+                _goals.Add(checklistGoal);
+            }
+        }
+        Console.WriteLine();
     }
 }
