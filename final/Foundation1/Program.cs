@@ -15,22 +15,24 @@ class Program
         video1.AddComment(comment3);
         videos.Add(video1);
 
-        Video video2 = new Video("", "", 239);
-        Comment comment4 = new Comment("", "");
-        Comment comment5 = new Comment("", "");
-        Comment comment6 = new Comment("", "");
+        Video video2 = new Video("2015 Nissan Sentra Oil Change", "DIY Car", 239);
+        Comment comment4 = new Comment("MyNissan", "Does this work for any Nissan model?");
+        Comment comment5 = new Comment("Todd Bywell", "Great! Needed this.");
+        Comment comment6 = new Comment("Phil Michaels", "Made it look easy you did.");
         video2.AddComment(comment4);
         video2.AddComment(comment5);
         video2.AddComment(comment6);
         videos.Add(video2);
 
-        Video video3 = new Video("", "", 587);
-        Comment comment7 = new Comment("", "");
-        Comment comment8 = new Comment("", "");
-        Comment comment9 = new Comment("", "");
+        Video video3 = new Video("A Day in the Life: Working for Apple", "Fred Hiwalk", 587);
+        Comment comment7 = new Comment("John Curtus", "That looks so cool! I wish that I could work for Apple as well. One I will work for them for sure!");
+        Comment comment8 = new Comment("user99993", "Working for Microsoft is way better than working for Apple.");
+        Comment comment9 = new Comment("Helt Uni", "Loved the video! Hope you make more like this one.");
+        Comment comment10 = new Comment("Anonymous", "Are you sure Apple is okay with you posting this video??");
         video3.AddComment(comment7);
         video3.AddComment(comment8);
         video3.AddComment(comment9);
+        video3.AddComment(comment10);
         videos.Add(video3);
 
         Console.Clear();
