@@ -9,8 +9,18 @@ public class Customer
         _address = address;
     }
 
+    public string GetName()
+    {
+        return _name;
+    }
+
+    public string GetAddress()
+    {
+        return _address.ToStringAddress();
+    }
+
     public bool IsUsaAddress()
     {
-        return true;
+        return _address.IsUsaAddress();
     }
 }

@@ -11,21 +11,43 @@ public class Order
 
     public void AddProduct(Product product)
     {
-
+        _products.Add(product);
     }
 
-    public int TotalCost()
+    public double TotalCost()
     {
-        return 0;
+        double totalCost = 0;
+        double shippingCost = 5;
+        if (!_customer.IsUsaAddress()) 
+        {
+            shippingCost = 35;
+        }
+
+        foreach (Product product in _products)
+        {
+            totalCost += product.TotalCost();
+        }
+
+        totalCost += shippingCost;
+        return totalCost;
     }
 
     public string ToStringPackingLabel()
     {
-        return "";
+        string packingLabel = "";
+
+        foreach (Product product in _products)
+        {
+            packingLabel += $"\n   Product ID: {product.GetProductId()}   Name: {product.GetName()}";
+        }
+
+        return packingLabel;
     }
 
     public string ToStringShippingLabel()
     {
-        return "";
+        string shippingLabel = "";
+        shippingLabel += $"   {_customer.GetName()}\n{_customer.GetAddress()}";
+        return shippingLabel;
     }
 }

@@ -15,11 +15,19 @@ public class Address
 
     public bool IsUsaAddress()
     {
-        return true;
+        if (_country == "USA")
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
 
     public string ToStringAddress()
     {
-        return "";
+        string addressString = $"   {_street}\n   {_city}, {_state}\n   {_country}";
+        return addressString;
     }
 }
