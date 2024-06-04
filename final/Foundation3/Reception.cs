@@ -7,13 +7,23 @@ public class Reception : Event
         _email = email;
     }
 
-    public void DisplayFullDetails()
+    public string DisplayFullDetails()
     {
+        string details = "";
+        details += DisplayStandardDetails();
+        details += $"  Event Type: Reception\n";
+        details += $"  RSVP Email Address: {_email}\n";
 
+        return details;
     }
 
-    public void DisplayShortDescription()
+    public string DisplayShortDescription()
     {
-        
+        string details = "";
+        details += $"  Event Type: Reception\n";
+        details += $"  Title: {GetTitle()}\n";
+        details += $"  Date: {GetDate()}\n";
+
+        return details;
     }
 }

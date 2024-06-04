@@ -15,8 +15,25 @@ public class Event
         _address = address;
     }
 
-    public void DisplayStandardDetails()
+    public string GetTitle()
     {
-        
+        return _title;
+    }
+
+    public string GetDate()
+    {
+        return _date;
+    }
+
+    public string DisplayStandardDetails()
+    {
+        string details = "";
+        details += $"  Title: {_title}\n";
+        details += $"  Description: {_description}\n";
+        details += $"  Date: {_date}\n";
+        details += $"  Time: {_time}\n";
+        details += $"  Address: \n{_address.ToStringAddress()}\n";
+
+        return details;
     }
 }

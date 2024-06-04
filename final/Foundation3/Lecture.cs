@@ -9,13 +9,24 @@ public class Lecture : Event
         _capacity = capacity;
     }
 
-    public void DisplayFullDetails()
+    public string DisplayFullDetails()
     {
+        string details = "";
+        details += DisplayStandardDetails();
+        details += $"  Event Type: Lecture\n";
+        details += $"  Speaker: {_speaker}\n";
+        details += $"  Capacity: {_capacity}\n";
 
+        return details;
     }
 
-    public void DisplayShortDescription()
+    public string DisplayShortDescription()
     {
-        
+        string details = "";
+        details += $"  Event Type: Lecture\n";
+        details += $"  Title: {GetTitle()}\n";
+        details += $"  Date: {GetDate()}\n";
+
+        return details;
     }
 }
