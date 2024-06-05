@@ -9,16 +9,21 @@ public class StationaryBicycling : Activity
 
     public override double CalculateDistance()
     {
-        return 2;
+        return GetLength() / CalculatePace();
     }
 
     public override double CalculateSpeed()
     {
-        return 2;
+        return _speed;
     }
 
     public override double CalculatePace()
     {
-        return 2;
+        return 60 / _speed;
+    }
+
+    public override string GetEventType()
+    {
+        return "Stationary Bicycling";
     }
 }

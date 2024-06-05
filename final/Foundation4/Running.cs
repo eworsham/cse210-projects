@@ -9,16 +9,21 @@ public class Running : Activity
 
     public override double CalculateDistance()
     {
-        return 1;
+        return _distance;
     }
 
     public override double CalculateSpeed()
     {
-        return 1;
+        return _distance / GetLength() * 60;
     }
 
     public override double CalculatePace()
     {
-        return 1;
+        return GetLength() / _distance;
+    }
+
+    public override string GetEventType() 
+    {
+        return "Running";
     }
 }

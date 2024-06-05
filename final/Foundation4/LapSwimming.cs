@@ -9,16 +9,21 @@ public class LapSwimming : Activity
 
     public override double CalculateDistance()
     {
-        return 3;
+        return _numberOfLaps * 50 / 1000 * 0.62;
     }
 
     public override double CalculateSpeed()
     {
-        return 3;
+        return CalculateDistance() / GetLength() * 60;
     }
 
     public override double CalculatePace()
     {
-        return 3;
+        return 60 / CalculateSpeed();
+    }
+
+    public override string GetEventType()
+    {
+        return "Lap Swimming";
     }
 }
